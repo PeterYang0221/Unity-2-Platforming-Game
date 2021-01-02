@@ -21,7 +21,6 @@ public class playerManager : MonoBehaviour
 
     private List<Collectable> inventory = new List<Collectable>();
     public Text inventoryText;
-    public Text description;
     public Text descriptionText;
     private int currentIndex;
     // Start is called before the first frame update
@@ -59,7 +58,7 @@ public class playerManager : MonoBehaviour
         }
         else
         {
-            inventoryText.text = "Current Selection" + inventory[currentIndex].collectableName + " "+ (currentIndex + 1).ToString();
+            inventoryText.text = "Current Selection: " + inventory[currentIndex].collectableName + " "+ (currentIndex + 1).ToString();
             descriptionText.text = "press [E] to " + inventory[currentIndex].description;
         }
 
@@ -75,6 +74,13 @@ public class playerManager : MonoBehaviour
                     currentIndex = (currentIndex - 1) % inventory.Count;        
                 }
             }
+
+            // Switch to the next item
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                currentIndex = (currentIndex + 1) % inventory.Count;
+            }
+
         }
     }
 
